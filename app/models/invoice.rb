@@ -13,10 +13,6 @@ class Invoice < ApplicationRecord
     self.items.sum(:unit_price)
   end
 
-  def format_date
-    created_at.strftime("%A, %B %d, %Y")
-  end
-
   def self.incomplete
     # Invoice.where.not(status: 1).joins(:invoice_items).where.not(status: 2).group("invoices.id")
     where(status: 0).order(:created_at)

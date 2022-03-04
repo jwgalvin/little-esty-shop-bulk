@@ -30,7 +30,7 @@
       <ul>
       <li>Name: <%=invoice_item.item.name%><br>
       Invoice Number: <%=invoice_item.invoice.id%><br>
-      Order Date: <%=invoice_item.invoice.format_date%><br>
+      Order Date: <%=date_format(invoice_item.invoice.created_at)%><br>
       <%= link_to "View this invoice", "/merchants/#{@merchant.id}/invoices/#{invoice_item.invoice.id}" %></li>
 
       </ul>

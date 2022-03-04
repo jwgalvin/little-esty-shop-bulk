@@ -1,25 +1,32 @@
 <div class="container text-center">
-<h1>Herein the glorious attributes are herein listed</h1>
-<div class="merchant-adm">
+<h1><%="#{@invoice.customer.first_name}"%>'s invoice:</h1>
+<div class="center-stuff2">
+<div class="center-col4">
 <ul>
   <h3>Customer Data</h3>
-  <li>Customer name: <%= @invoice.customer.first_name %> <%= @invoice.customer.last_name %><br>Customer ID: <%= @invoice.customer_id %><br>Invoice made: <%= @invoice.created_at.strftime("%A, %B %d, %Y") %><br>
+  <li>Customer name: <%= @invoice.customer.first_name %> <%= @invoice.customer.last_name %><br>Customer ID: <%= @invoice.customer_id %><br>Invoice made: <%= date_format(@invoice.created_at) %><br>
   <li>Invoice ID: <%= @invoice.id %></li>
-  <li>Invoice status: <%= @invoice.status %></li>
+  <li>Invoice status: <%= @invoice.status %></li><br><br>
+  <h5> Amount due: $<%= "#{@invoice.total_revenue}"%></h5>
+  <h7> Amount discounted: $    </h7>
 </ul>
+</div>
 
-<div class="center-col2">
+
+<div class="center-col4">
 <h3>Items in this invoice </h3>
 <% @invoice.invoice_items.each do |invoice_item| %>
   Item name: <%= invoice_item.item.name %><br>
   Item price: <%= invoice_item.item.unit_price %><br>
   Quantity purchased: <%= invoice_item.quantity %>
-<div id="<%=invoice_item.item_id %>">Item status: <%= invoice_item.status %>
+<a id="<%=invoice_item.item_id %>">Item status: <%= invoice_item.status %>
   <%= form_with url: "/merchants/#{@merchant.id}/invoices/#{@invoice.id}?invoice_item=#{invoice_item.id}", method: :patch, local: true do |form|%>
       <%=form.select :status, ['pending', 'shipped', 'packaged'], selected: invoice_item.status %>
       <%= form.submit "Update Item Status" %>
 <% end %>
 
-<%end%></div><br>
-<h3> Total amount due on <%="#{@invoice.customer.first_name}"%>'s invoice: $<%= "#{@invoice.total_revenue}"%>
+<%end%></a><br>
+
   </div>
+</div>
+</div>

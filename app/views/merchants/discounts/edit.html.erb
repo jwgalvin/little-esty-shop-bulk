@@ -1,0 +1,11 @@
+<div class="container text-center">
+  <h1>Edit current promotion <%=@discount.name%> </h1><br>
+<div class="merchant-adm2">
+
+<%= render partial: "form", locals: {
+                                    path: "/merchants/#{@discount.merchant.id}/discounts/#{@discount.id}",
+                                    method: :patch,
+                                    label: "Submit",
+                                  } %>
+</div>
+</div>

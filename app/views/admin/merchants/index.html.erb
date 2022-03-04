@@ -10,8 +10,8 @@
         <% @merchants.top_merchant.each.with_index do |merchant, index|%>
           <li id="top-<%= index + 1 %>-of-5">
           Name: <%=merchant.name%> <%= button_to "#{merchant.name} dashboard", "/admin/merchants/#{merchant.id}", method: :get %>
-          <br>CA$H earned: <%=merchant.revenue%>
-          <br>Best day: <%= merchant.best_day %></li>
+          CA$H earned: <%=merchant.revenue%>
+          <br>Best day: <%= merchant.best_day %></li><br>
         <%end%>
       </ol>
     </div>

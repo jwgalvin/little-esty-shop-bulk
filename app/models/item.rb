@@ -30,4 +30,9 @@ class Item < ApplicationRecord
       .order("revenue DESC")
       .first&.created_at&.strftime("%A, %B %d, %Y")
   end
+
+  def promotional_discount(volume)
+    disconts.where('? >= discounts.threshold', volume)
+    .order(percent: :desc).first
+  end
 end

@@ -51,11 +51,6 @@ describe 'Admin Dashboard Index Page' do
     expect(current_path).to eq("/admin/merchants")
   end
 
-  it 'displays invoice created dates in the correct format' do
-    visit ('/admin')
-    expect(page).to have_content("Order created: #{@invoice1.format_date}")
-  end
-
   it "lists the invoices that are incomplete" do
     visit '/admin'
 
