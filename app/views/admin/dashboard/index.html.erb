@@ -15,7 +15,7 @@
 <ul>
   <h3>Incomplete Invoices</h3>
 <% @incomplete.each do |invoice| %>
-  <li> <%= link_to "Invoice ID: #{invoice.id}", "/admin/invoices/#{invoice.id}"%>   Order created:  <%=invoice.created_at.strftime("%A, %B %d, %Y")%></li>
+  <li> <%= link_to "Invoice ID: #{invoice.id}", "/admin/invoices/#{invoice.id}"%>   Order created:  <%=date_format(invoice.created_at)%></li>
   <%end%>
   </ul>
 </div>

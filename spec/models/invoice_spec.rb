@@ -31,7 +31,7 @@ RSpec.describe Invoice, type: :model do
 
     it "formats the created_at date" do
       invoice1 = create(:invoice, created_at: "Tue, 06 Mar 2012 15:54:17 UTC +00:00")
-      expect(invoice1.format_date).to eq("Tuesday, March 06, 2012")
+      expect(invoice1.created_at.strftime("%A, %B %d, %Y")).to eq("Tuesday, March 06, 2012")
     end
   end
 

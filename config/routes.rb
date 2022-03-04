@@ -21,6 +21,9 @@ Rails.application.routes.draw do
     get ':id/discounts/new', to: 'discounts#new'
     post ':id/discounts', to: 'discounts#create'
     get ':id/discounts/:id',  to: 'discounts#show'
+    delete ':id/discounts/:id', to: 'discounts#destroy'
+    get ':id/discounts/:id/edit', to: 'discounts#edit'
+    patch ':id/discounts/:id', to: 'discounts#update'
   end
 
   namespace :admin, module: :admin do
@@ -28,12 +31,6 @@ Rails.application.routes.draw do
     resources :merchants, only:[:index, :new, :show, :create, :edit, :update]
 
     resources :invoices, only:[:index, :show, :update]
-    # get '/merchants', to: 'merchants#index'
-    # get '/merchants/new', to: 'merchants#new'
-    # get '/merchants/:id', to: 'merchants#show'
-    # post '/merchants/create', to: 'merchants#create'
-    # get '/merchants/:id/edit', to: 'merchants#edit'
-    # patch '/merchants/:id', to: 'merchants#updat
   end
 
 end

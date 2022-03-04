@@ -1,7 +1,10 @@
 <div class="container text-center">
-  <% #binding.pry%>
 <h3><%=@discount.name%> promotion page.</h3>
- <p>Threshold quantity to qualify: <%=@discount.threshold%><br>
+ <p>
+   Promotion started: <%=date_format(@discount.created_at)%><br>
+   Threshold quantity to qualify: <%=@discount.threshold%><br>
    Percent discount applied: <%=@discount.percent%>%</p>
 
+   <%= button_to "Update Promotion", "/merchants/#{@discount.merchant.id}/discounts/#{@discount.id}/edit", method: :get %><br><br>
+   <%= button_to "DELETE Promotion", "/merchants/#{@discount.merchant.id}/discounts/#{@discount.id}", method: :delete %>
   </div>
