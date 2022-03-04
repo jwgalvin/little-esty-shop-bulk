@@ -6,14 +6,14 @@ describe "Merchant Dashboard", type: :feature do
     @merchant2 = create(:merchant)
 
     @discount1 = @merchant1.discounts.create!(name: "Floppies bday", threshold: 10, percent:5)
-    @discount2 = @merchant1.discounts.create!(name: "Moppies bday", threshold: 15, percent:7.5)
+    @discount2 = @merchant1.discounts.create!(name: "Moppies bday", threshold: 15, percent:7)
     @discount3 = @merchant1.discounts.create!(name: "Troppies bday", threshold: 20, percent:10)
 
     @discount4 = @merchant2.discounts.create!(name: "Cloppies bday", threshold: 25, percent:15)
   end
 
 
-  it "starts at the merchants dashboard and clicks the discout links" do
+  it "starts at the merchants dashboard and clicks the discount links" do
     visit "/merchants/#{@merchant1.id}"
 
     click_button("Promotions")
@@ -37,5 +37,13 @@ describe "Merchant Dashboard", type: :feature do
     expect(page).to have_content(@discount1.name)
     expect(page).to have_content(@discount1.threshold)
     expect(page).to have_content(@discount1.percent)
+  end
+
+  it "discount index to discount show" do
+    visit "/merchants/#{@merchant1.id}/discounts"
+    within("##{@discount1.id}") do
+      click_button("View promotion")
+    end
+    expect(current_path).to eq("/merchants/#{@merchant1.id}/discounts/#{@discount1.id}")
   end
 end
