@@ -201,35 +201,35 @@ describe "Merchant Dashboard", type: :feature do
     within("#favorite-customer-1") do
       expect(page).to have_content(customer2.first_name)
       expect(page).to have_content(customer2.last_name)
-      expect(page).to have_content("7 successful transactions")
+      expect(page).to have_content("7 transactions")
     end
 
     within("#favorite-customer-2") do
       expect(page).to have_content(customer4.first_name)
       expect(page).to have_content(customer4.last_name)
-      expect(page).to have_content("6 successful transactions")
+      expect(page).to have_content("6 transactions")
     end
 
     within("#favorite-customer-3") do
       expect(page).to have_content(customer5.first_name)
       expect(page).to have_content(customer5.last_name)
-      expect(page).to have_content("4 successful transactions")
+      expect(page).to have_content("4 transactions")
     end
 
     within("#favorite-customer-4") do
       expect(page).to have_content(customer6.first_name)
       expect(page).to have_content(customer6.last_name)
-      expect(page).to have_content("3 successful transactions")
+      expect(page).to have_content("3 transactions")
     end
 
     within("#favorite-customer-5") do
       expect(page).to have_content(customer3.first_name)
       expect(page).to have_content(customer3.last_name)
-      expect(page).to have_content("2 successful transactions")
+      expect(page).to have_content("2 transactions")
     end
 
     expect(page).to_not have_content(customer1.first_name)
     expect(page).to_not have_content(customer1.last_name)
-    expect(page).to_not have_content("1 successful transactions")
+    expect(page).to_not have_content("1 transactions")
   end
 end
