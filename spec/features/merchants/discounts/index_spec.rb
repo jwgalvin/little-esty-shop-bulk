@@ -6,7 +6,7 @@ describe "Merchant Dashboard", type: :feature do
     @merchant2 = create(:merchant)
 
     @discount1 = @merchant1.discounts.create!(name: "Floppies bday", threshold: 10, percent:5)
-    @discount2 = @merchant1.discounts.create!(name: "Moppies bday", threshold: 15, percent:7.5)
+    @discount2 = @merchant1.discounts.create!(name: "Moppies bday", threshold: 15, percent:7)
     @discount3 = @merchant1.discounts.create!(name: "Troppies bday", threshold: 20, percent:10)
 
     @discount4 = @merchant2.discounts.create!(name: "Cloppies bday", threshold: 25, percent:15)
