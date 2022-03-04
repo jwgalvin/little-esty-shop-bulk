@@ -56,9 +56,9 @@ describe "Merchant Dashboard", type: :feature do
 
     fill_in 'name',  with: "parcheesy discount"
     fill_in 'threshold', with: '5'
-    fill_in 'percent', with: "10%"
-    save_and_open_page
+    fill_in 'percent', with: "%"
     click_button("Submit")
+    save_and_open_page
     expect(page).to have_content("Error: fill all in and no symbols")
     expect(page).to_not have_content("parcheesy discount")
     expect(page).to_not have_content("Quantity needed: 5")
