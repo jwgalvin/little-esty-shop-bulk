@@ -46,4 +46,13 @@ describe "Merchant Dashboard", type: :feature do
     end
     expect(current_path).to eq("/merchants/#{@merchant1.id}/discounts/#{@discount1.id}")
   end
+
+  it "US4: has a delete/destroy button that does the thing" do
+    visit "/merchants/#{@merchant1.id}/discounts"
+    within("##{@discount1.id}") do
+      click_button("DELETE Promotion")
+  end
+    expect(current_path).to eq("/merchants/#{@merchant1.id}/discounts")
+    expect(page).to_not have_content("#{@discount1.name}")
+  end
 end
