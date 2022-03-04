@@ -21,6 +21,10 @@ class Merchants::DiscountsController < ApplicationController
     @merchant = Merchant.find(params[:id])
   end
 
+  def show
+    
+    @discount = Discount.find(params[:id])
+  end
   private
   def promo_params
     params.permit(:name, :threshold, :percent)
