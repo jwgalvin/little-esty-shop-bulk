@@ -25,6 +25,8 @@
 
 .left-div{
 text-align: left;
+width: 30rem;
+padding-left: 8.5rem;
 }
 .left-div2{
 text-align: left;
@@ -43,17 +45,24 @@ text-align: left;
 text-align: left;
 padding-left: 4rem;
 }
-.center-col3 {
-  border: 1px solid black;
+.center-stuff{
+  text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.center-col3 {
+  border: 5px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   height: 30rem;
   overflow: auto;
+  width: auto;
 }
 .border{
-    border: 1px solid black;
+    border: 3px solid black;
 }
 .center-admin{
 padding-left: 29rem;

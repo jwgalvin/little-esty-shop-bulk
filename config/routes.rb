@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     get ':id/discounts/new', to: 'discounts#new'
     post ':id/discounts', to: 'discounts#create'
     get ':id/discounts/:id',  to: 'discounts#show'
+    delete ':id/discounts/:id',  to: 'discounts#destroy'
   end
 
   namespace :admin, module: :admin do

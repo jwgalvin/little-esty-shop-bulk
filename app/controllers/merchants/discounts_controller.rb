@@ -22,10 +22,17 @@ class Merchants::DiscountsController < ApplicationController
   end
 
   def show
-    
     @discount = Discount.find(params[:id])
   end
-  private
+
+  def destroy
+    @discount = Discount.find(params[:id])
+    merch_id = @discount.merchant_id
+    @discount.destroy
+    redirect_to "/merchants/#{merch_id}/discounts"
+  end
+
+private
   def promo_params
     params.permit(:name, :threshold, :percent)
   end
