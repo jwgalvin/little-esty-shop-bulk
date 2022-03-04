@@ -1,0 +1,13 @@
+<div class="container text-center">
+<%= form_with url: path, method: method, local: true do |f| %>
+  <li>Promotion name: <% f.label :name %>
+  <%= f.text_field :name%></li><br>
+  <li>Promo threshold <% f.label :threshold%>
+  <%= f.text_field :threshold%></li><br>
+  <li>Promo discount: <% f.label :percent %>
+  <%= f.text_field :percent%></li><br>
+
+
+  <%= f.submit label %>
+<% end %>
+</div>

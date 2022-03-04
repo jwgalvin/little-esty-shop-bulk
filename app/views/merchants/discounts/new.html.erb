@@ -1,0 +1,12 @@
+<div class="container text-center">
+  <h1>Add a New promotion</h1><br>
+<div class="merchant-adm2">
+
+<%= render partial: "form", locals: {
+                                    path: "/merchants/#{@merchant.id}/discounts",
+                                    method: :post,
+                                    label: "Submit",
+
+                                  } %>
+</div>
+</div>
