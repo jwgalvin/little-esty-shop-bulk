@@ -1,16 +1,15 @@
 <div class="container text-center">
-  <h1> Promotional Discounts here!</h1>
+  <h1> Active promotions dashboard!</h1>
   <p><%= button_to "Create new promotion", "/merchants/#{@merchant.id}/discounts/new", method: :get %></p><br>
-<div class="center-stuff">
-  <h5> Active Promotions</h5>
-<ul class="center-col3">
-<% @merchant.discounts.each do |discount|%>
-<br>
+
+  <div class="center-stuff">
+    <ul class="center-col3">
+      <% @merchant.discounts.each do |discount|%><br>
     <a id="<%="#{discount.id}"%>", class="left-div">Promotion name:  <%=discount.name%><br>
     Quantity needed:  <%=discount.threshold%><br>
     Percent off: <%=discount.percent%><br>
     Visit promo page:<%= button_to "View promotion", "/merchants/#{@merchant.id}/discounts/#{discount.id}", method: :get %><%= button_to "DELETE Promotion", "/merchants/#{@merchant.id}/discounts/#{discount.id}", method: :delete %></a>
-<%end%>
-</ul>
-</div>
+    <%end%>
+    </ul>
+  </div>
 </div>
