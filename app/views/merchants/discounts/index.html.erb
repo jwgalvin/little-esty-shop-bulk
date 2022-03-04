@@ -6,9 +6,9 @@
   <h5> Active Promotions</h5>
 <% @merchant.discounts.each do |discount|%>
 
-<li class="left-div">Promotions name:  <%=discount.name%><br>
-Quantity needed to qualify  <%=discount.threshold%><br>
-Percent off:  <%=discount.percent%></li><br>
+<li class="left-div">Promotion name:  <%=discount.name%><br>
+Quantity needed:  <%=discount.threshold%><br>
+Percent off: <%=discount.percent%></li><br>
 <%end%>
 </ul>
 </div>
