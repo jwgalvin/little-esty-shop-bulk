@@ -6,9 +6,11 @@
   <h5> Active Promotions</h5>
 <% @merchant.discounts.each do |discount|%>
 
-<li class="left-div">Promotion name:  <%=discount.name%><br>
+<%#binding.pry%>
+<li id="<%="#{discount.id}"%>"", class="left-div">Promotion name:  <%=discount.name%><br>
 Quantity needed:  <%=discount.threshold%><br>
-Percent off: <%=discount.percent%></li><br>
+Percent off: <%=discount.percent%><br>
+Visit promo page:<%= button_to "View promotion", "/merchants/#{@merchant.id}/discounts/#{discount.id}", method: :get %></li>
 <%end%>
 </ul>
 </div>

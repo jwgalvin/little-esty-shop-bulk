@@ -11,12 +11,13 @@ describe "discount show/Dashboard", type: :feature do
     @discount4 = @merchant2.discounts.create!(name: "Cloppies bday", threshold: 25, percent:15)
   end
 
+
   it "has a show page that lists all attributes" do
     visit "/merchants/#{@merchant1.id}/discounts/#{@discount1.id}"
 
     expect(page).to have_content("Floppies bday")
-    expect(page).to have_content("Quantity needed: 10")
-    expect(page).to have_content("Percent off: 5")
-
+    expect(page).to have_content("Threshold quantity to qualify: #{@discount1.threshold}")
+    expect(page).to have_content("Percent discount applied: #{@discount1.percent}")
+    expect(page).to_not have_content("Percent discount applied: #{@discount2.percent}")
   end
-  end
+end
