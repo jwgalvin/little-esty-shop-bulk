@@ -2,18 +2,24 @@
     <div class="merchant-adm">
 <ul>
   <div>
-    <h2><%= @merchant.name %> Store</h2>
+    <h2><%= @merchant.name %></h2>
+    <br><br>
 <div>  <%= link_to "View store items", "/merchants/#{@merchant.id}/items" %>
   <br><%= link_to "View invoices", "/merchants/#{@merchant.id}/invoices" %></div>
 </ul>
 
-<div>
-  <h2>Favorite Customers</h2>
+<div class="border">
     <ol>
+      <h2>Favorite Customers</h2>
     <% @merchant.favorite_customers.each_with_index do |customer, index| %>
-    <li id="favorite-customer-<%= index + 1 %>"><%= customer.first_name %> <%= customer.last_name %>: <%= customer.transaction_count %> successful transactions</li>
+    <li id="favorite-customer-<%= index + 1 %>"><%= customer.first_name %> <%= customer.last_name %>: <%= customer.transaction_count %> transactions</li>
     <% end %>
     </ol>
+    <ul>
+  <h4>  Click here to view current promotions: <%= button_to "promotions", "/merchants/#{@merchant.id}/discounts", method: :get %></h4>
+
+
+  </ul>
 </div>
 
 <div class="center-col2">

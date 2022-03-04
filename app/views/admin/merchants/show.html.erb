@@ -1,8 +1,10 @@
 <div class="container text-center">
+  <br><br>
+  <h1><%= @merchant.name %>'s admin page</h1>
   <div class="left-div">
     <br><br>
-<h1><%= @merchant.name %></h1>
-<h2>status: <%= @merchant.status %></h2>
+<h3>Status: <%= @merchant.status %></h3>
 <%= link_to "Update Merchant", "/admin/merchants/#{@merchant.id}/edit" %>
+<%= button_to "Visit Merchant page", "/merchants/#{@merchant.id}", method: :get %>
 </div>
 </div>
