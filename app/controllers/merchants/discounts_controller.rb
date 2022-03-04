@@ -13,7 +13,7 @@ class Merchants::DiscountsController < ApplicationController
       redirect_to "/merchants/#{@merchant.id}/discounts"
     else
       redirect_to "/merchants/#{@merchant.id}/discounts"
-      flash[:alert] = "Error: fill all in and no symbols"
+      flash[:alert] = "Error: #{error_message(@discount.errors)}"
     end
   end
 
