@@ -24,6 +24,7 @@
       <li>Item status: <%= item.status %></li></p>
       <%end%>
     </ul>
-  <h3> Bill <%="#{@invoice.customer.first_name}"%><br> $<%= "#{@invoice.total_revenue}"%>
+  <h3> Invoice for <%=@invoice.customer.first_name%> before discounts is $<%=penny_to_dollar("#{@invoice.total_revenue}")%><br>
+  After promotions $<%= invoice_mather(@invoice)%>  </h3>
 </div>
 </div>

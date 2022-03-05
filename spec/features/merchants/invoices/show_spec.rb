@@ -3,7 +3,9 @@ require 'rails_helper'
 RSpec.describe 'Shows 1 invoice, and all its attributes', type: :feature do
   before do
     @merchant1 = Merchant.create!(name: "The Tornado")
+    @merchant2 = Merchant.create!(name: "The Cornado")
     @item1 = @merchant1.items.create!(name: "SmartPants", description: "IQ + 20", unit_price: 125)
+    @item2 = @merchant1.items.create!(name: "Smartshirt", description: "IQ + 20", unit_price: 250)
     @customer1 = Customer.create!(first_name: "Marky", last_name: "Mark" )
     @customer2 = Customer.create!(first_name: "Larky", last_name: "Lark" )
     @customer3 = Customer.create!(first_name: "Sparky", last_name: "Spark" )
@@ -11,7 +13,11 @@ RSpec.describe 'Shows 1 invoice, and all its attributes', type: :feature do
     @invoice2 = @customer2.invoices.create!(status: 1)
     @invoice3 = @customer2.invoices.create!(status: 1)
     @invoice_item1 = InvoiceItem.create!(invoice_id: @invoice1.id, item_id: @item1.id, quantity: 2, unit_price: 125, status: 1)
-
+    @invoice_item2 = InvoiceItem.create!(invoice_id: @invoice1.id, item_id: @item2.id, quantity: 10, unit_price: 250, status: 1)
+    @discount1 = @merchant1.discounts.create!(name: "Floppies bday", threshold: 10, percent:5)
+    @discount2 = @merchant1.discounts.create!(name: "Moppies bday", threshold: 15, percent:7)
+    @discount3 = @merchant1.discounts.create!(name: "Troppies bday", threshold: 20, percent:10)
+    @discount4 = @merchant2.discounts.create!(name: "Cloppies bday", threshold: 25, percent:15)
   end
 
   it "links from the merchants/invoices index to merch/inv/show" do
@@ -36,7 +42,7 @@ RSpec.describe 'Shows 1 invoice, and all its attributes', type: :feature do
     visit "/merchants/#{@merchant1.id}/invoices/#{@invoice1.id}"
 
     expect(page).to have_content("Item name: #{@item1.name}")
-    expect(page).to have_content("Item price: #{@item1.unit_price}")
+    expect(page).to have_content("Item price: $1.25")
     expect(page).to have_content("Quantity purchased: #{@invoice_item1.quantity}")
     expect(page).to have_content("Item status: #{@invoice_item1.status}")
   end
@@ -86,6 +92,13 @@ RSpec.describe 'Shows 1 invoice, and all its attributes', type: :feature do
 
   it " test for the total amount of the invoice." do
     visit "/merchants/#{@merchant1.id}/invoices/#{@invoice1.id}"
-    expect(page).to have_content("Amount due: $125")
+    #save_and_open_page
+    # 27.50 = (2x125)+(10x250)
+    #discount 1.25 = 5%x 2500
+    #owed 26.25
+    expect(page).to have_content("Amount before promotions: $27.5")
+    expect(page).to have_content("Amount discounted: $1.25")
+    expect(page).to have_content("Total invoice amount: $26.25")
   end
+
 end
