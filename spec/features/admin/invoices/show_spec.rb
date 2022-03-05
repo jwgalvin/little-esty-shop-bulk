@@ -63,8 +63,8 @@ RSpec.describe 'Invoices', type: :feature do
 
   it " test for the total amount of the invoice." do
     visit "/admin/invoices/#{@invoice1.id}"
-
-    expect(page).to have_content("Bill Marky $2125")
+    #save_and_open_page
+    expect(page).to have_content("$42.5")
   end
 
   it "can update status via dropdown menu's" do
