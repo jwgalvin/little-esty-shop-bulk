@@ -51,8 +51,18 @@ describe "Merchant Dashboard", type: :feature do
     visit "/merchants/#{@merchant1.id}/discounts"
     within("##{@discount1.id}") do
       click_button("DELETE Promotion")
-  end
+    end
     expect(current_path).to eq("/merchants/#{@merchant1.id}/discounts")
     expect(page).to_not have_content("#{@discount1.name}")
+  end
+
+  it "has the holidays" do
+    holidays = HolidayFacade.find_holidays
+    visit "/merchants/#{@merchant1.id}/discounts"
+    expect(holidays.count).to eq(3)
+    within("#holidays") do
+      expect(holidays[0].name).to appear_before(holidays[1].name)
+      expect(holidays[1].name).to appear_before(holidays[2].name)
+    end
   end
 end
