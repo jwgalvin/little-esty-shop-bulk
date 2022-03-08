@@ -102,7 +102,6 @@ RSpec.describe 'Shows 1 invoice, and all its attributes', type: :feature do
 
   it "has a button to the discounts applied" do
     visit "/merchants/#{@merchant1.id}/invoices/#{@invoice1.id}"
-    save_and_open_page
     within("##{@invoice_item2.item_id}") do
       click_button("#{@discount1.name}")
       expect(current_path).to eq("/merchants/#{@merchant1.id}/discounts/#{@discount1.id}")
