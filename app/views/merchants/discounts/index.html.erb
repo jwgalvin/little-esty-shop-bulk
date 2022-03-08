@@ -2,8 +2,14 @@
   <h1> Active promotions dashboard!</h1>
   <p><%= button_to "Create new promotion", "/merchants/#{@merchant.id}/discounts/new", method: :get %></p><br>
 
+  <div id="holidays">
+    <h4>Upcoming Holidays</h4>
+    <%@holidays.each do |holiday|%>
+    <%=holiday.name%> is on <%=holiday.date%><br>
+    <%end%>
+  </div><br>
   <div class="center-stuff">
-    <ul class="center-col3">
+    <ul class="center-col5">
       <% @merchant.discounts.each do |discount|%><br>
     <a id="<%="#{discount.id}"%>", class="left-div">Promotion name:  <%=discount.name%><br>
     Quantity needed:  <%=discount.threshold%><br>
@@ -11,10 +17,5 @@
     Visit promo page:<%= button_to "View promotion", "/merchants/#{@merchant.id}/discounts/#{discount.id}", method: :get %><%= button_to "DELETE Promotion", "/merchants/#{@merchant.id}/discounts/#{discount.id}", method: :delete %></a>
     <%end%>
     </ul>
-      <div id="holidays">
-      <%@holidays.each do |holiday|%>
-        <%=holiday.name%> is on <%=holiday.date%><br>
-        <%end%>
-      </div>
     </div>
 </div>
