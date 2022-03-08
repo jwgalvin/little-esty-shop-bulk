@@ -8,7 +8,6 @@
     <li>Invoice ID: <%= @invoice.id %></li>
     <li>Invoice status: <%= @invoice.status %></li><br><br>
     <h5> Amount before promotions: $<%= penny_to_dollar(@invoice.total_revenue)%></h5>
-    <h7> Discount applied: <%= %><br></h7>
     <h7> Amount discounted: $<%= penny_to_dollar(@invoice.dis_counter) %> <br>
     Total invoice amount: $<%= invoice_mather(@invoice)%> </h7>
 
