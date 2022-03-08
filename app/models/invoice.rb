@@ -20,7 +20,6 @@ class Invoice < ApplicationRecord
   end
 
   def dis_counter
-    #binding.pry
     invoice_items.joins(:discounts)
     .select('invoice_items.id, MAX((invoice_items.unit_price * invoice_items.quantity)* (discounts.percent /100.00)) AS applied_discount')
     .where('invoice_items.quantity >= discounts.threshold')

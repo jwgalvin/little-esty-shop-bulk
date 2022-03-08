@@ -4,9 +4,11 @@ RSpec.describe 'Invoices', type: :feature do
   before do
 
     @merchant1 = Merchant.create!(name: "The Tornado")
+    @merchant2 = Merchant.create!(name: "The Mornado")
     @item1 = @merchant1.items.create!(name: "SmartPants", description: "IQ + 20", unit_price: 125)
     @item2 = @merchant1.items.create!(name: "FunPants", description: "Cha + 20", unit_price: 2000)
     @item3 = @merchant1.items.create!(name: "FitPants", description: "Con + 20", unit_price: 150)
+    @item4 = @merchant2.items.create!(name: "LessFitPants", description: "Con - 10", unit_price: 150)
     @customer1 = Customer.create!(first_name: "Marky", last_name: "Mark" )
     @customer2 = Customer.create!(first_name: "Larky", last_name: "Lark" )
     @customer3 = Customer.create!(first_name: "Sparky", last_name: "Spark" )
@@ -16,6 +18,11 @@ RSpec.describe 'Invoices', type: :feature do
     @invoice_item1 = InvoiceItem.create!(invoice_id: @invoice1.id, item_id: @item1.id, quantity: 2, unit_price: 125, status: 1)
     @invoice_item2 = InvoiceItem.create!(invoice_id: @invoice1.id, item_id: @item2.id, quantity: 2, unit_price: 2000, status: 2)
     @invoice_item3 = InvoiceItem.create!(invoice_id: @invoice2.id, item_id: @item3.id, quantity: 5, unit_price: 125, status: 0)
+    @invoice_item4 = InvoiceItem.create!(invoice_id: @invoice1.id, item_id: @item4.id, quantity: 10, unit_price: 125, status: 1)
+    @discount1 = @merchant1.discounts.create!(name: "Floppies bday", threshold: 5, percent:5)
+    @discount2 = @merchant1.discounts.create!(name: "Moppies bday", threshold: 2, percent:7)
+    @discount3 = @merchant1.discounts.create!(name: "Troppies bday", threshold: 20, percent:10)
+    @discount4 = @merchant2.discounts.create!(name: "Cloppies bday", threshold: 2, percent:15)
   end
 
 
@@ -52,6 +59,7 @@ RSpec.describe 'Invoices', type: :feature do
   it " tests sad path." do
     visit "/admin/invoices/#{@invoice1.id}"
 
+    #save_and_open_page
     expect(page).to_not have_content("Item name: #{@item3.name}")
 
     expect(page).to_not have_content("Item status: #{@invoice_item3.status}")
@@ -63,8 +71,7 @@ RSpec.describe 'Invoices', type: :feature do
 
   it " test for the total amount of the invoice." do
     visit "/admin/invoices/#{@invoice1.id}"
-    #save_and_open_page
-    expect(page).to have_content("$42.5")
+    expect(page).to have_content("Total amount due $50.15")
   end
 
   it "can update status via dropdown menu's" do
@@ -99,5 +106,13 @@ RSpec.describe 'Invoices', type: :feature do
       expect(page).to_not have_content("Invoice Status: in progress")
       expect(page).to_not have_content("Invoice Status: cancelled")
     end
+  end
+
+  it "does the things" do
+    visit "/admin/invoices/#{@invoice1.id}"
+
+    expect(page).to have_content("Original cost for Marky $55.0")
+    expect(page).to have_content("Total Savings applied $4.85")
+    expect(page).to have_content("Total amount due $50.15")
   end
 end

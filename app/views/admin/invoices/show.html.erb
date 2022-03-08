@@ -1,5 +1,5 @@
 <div class="container text-center">
-  <h1>Customer order page </h1>
+  <h1>Customer order page</h1>
 <div class=merchant-adm>
   <ul>
     <h3> Invoice info </h3>
@@ -24,7 +24,7 @@
       <li>Item status: <%= item.status %></li></p>
       <%end%>
     </ul>
-  <h3> Invoice for <%=@invoice.customer.first_name%> before discounts is $<%=penny_to_dollar("#{@invoice.total_revenue}")%><br>
-  After promotions $<%= invoice_mather(@invoice)%>  </h3>
+  <h5> Original cost for <%=@invoice.customer.first_name%> $<%=penny_to_dollar("#{@invoice.total_revenue}")%><br>Total Savings applied  $<%=penny_to_dollar("#{@invoice.dis_counter}")%><br>
+  Total amount due $<%= invoice_mather(@invoice)%>  </h5>
 </div>
 </div>
