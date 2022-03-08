@@ -1,8 +1,15 @@
-<h1>Item show page</h1>
+<div class="container text-center">
+  <br>
+    <div class="center-stuff">
+      <div class="center-col5">
+      <h1> <%=@item.name%> page</h1><br>
+      <%= link_to "Update item", "/merchants/#{@merchant.id}/items/#{@item.id}/edit" %>
 
-<p>Item name: <%= @item.name %></p><br/>
-<p>Item description: <%= @item.description %></p><br/>
-<p>Unit price: <%= @item.unit_price %></p><br/>
-<p>Item status: <%= @item.status %></p><br/>
+      <p>Item name: <%= @item.name %></p><br/>
+      <p>Item description: <%= @item.description %></p><br/>
+      <p>Unit price: $<%= penny_to_dollar(@item.unit_price) %></p><br/>
+      <p>Item status: <%= @item.status %></p><br/>
+      </div>
 
-<%= link_to "Update item", "/merchants/#{@merchant.id}/items/#{@item.id}/edit" %>
+    </div>
+</div>

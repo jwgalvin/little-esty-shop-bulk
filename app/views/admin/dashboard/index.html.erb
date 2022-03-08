@@ -1,8 +1,8 @@
 <div class="container text-center">
 <h1> Admin Dashboard </h1>
-<div id='adminnavbuttons'><%= button_to "View Merchants", "/admin/merchants", method: :get %><%= button_to "View Invoices", "/admin/invoices", method: :get %></div>
+<div id='adminnavbuttons'><%= button_to "View Merchants", "/admin/merchants", method: :get %><%= button_to "View Invoices", "/admin/invoices", method: :get %></div><br>
 <div class="merchant-adm">
-<div id="top-customers">
+<div id="top-customers" class="center-col3">
   <h2>Top 5 Customers</h2>
   <% @customers.top_five.each_with_index do |customer, index| %>
     <p><%= "#{index + 1}. #{customer.first_name}:
@@ -12,10 +12,10 @@
 
 
 
-<ul>
-  <h3>Incomplete Invoices</h3>
-<% @incomplete.each do |invoice| %>
-  <li> <%= link_to "Invoice ID: #{invoice.id}", "/admin/invoices/#{invoice.id}"%>   Order created:  <%=date_format(invoice.created_at)%></li>
+<ul class="center-col3">
+  <h2>Incomplete Invoices</h2>
+  <%@incomplete.each do |invoice| %>
+  <li> <%= link_to "Invoice ID: #{invoice.id}", "/admin/invoices/#{invoice.id}"%><br>   Order created:  <%=date_format(invoice.created_at)%></li>
   <%end%>
   </ul>
 </div>
