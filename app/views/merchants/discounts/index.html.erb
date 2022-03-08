@@ -11,5 +11,10 @@
     Visit promo page:<%= button_to "View promotion", "/merchants/#{@merchant.id}/discounts/#{discount.id}", method: :get %><%= button_to "DELETE Promotion", "/merchants/#{@merchant.id}/discounts/#{discount.id}", method: :delete %></a>
     <%end%>
     </ul>
-  </div>
+      <div id="holidays">
+      <%@holidays.each do |holiday|%>
+        <%=holiday.name%> is on <%=holiday.date%><br>
+        <%end%>
+      </div>
+    </div>
 </div>
