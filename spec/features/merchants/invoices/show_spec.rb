@@ -92,13 +92,22 @@ RSpec.describe 'Shows 1 invoice, and all its attributes', type: :feature do
 
   it " test for the total amount of the invoice." do
     visit "/merchants/#{@merchant1.id}/invoices/#{@invoice1.id}"
-    #save_and_open_page
     # 27.50 = (2x125)+(10x250)
     #discount 1.25 = 5%x 2500
     #owed 26.25
     expect(page).to have_content("Amount before promotions: $27.5")
     expect(page).to have_content("Amount discounted: $1.25")
     expect(page).to have_content("Total invoice amount: $26.25")
+  end
+
+  it "has a button to the discounts applied" do
+    visit "/merchants/#{@merchant1.id}/invoices/#{@invoice1.id}"
+    save_and_open_page
+    within("##{@invoice_item2.item_id}") do
+      click_button("#{@discount1.name}")
+      expect(current_path).to eq("/merchants/#{@merchant1.id}/discounts/#{@discount1.id}")
+    end
+
   end
 
 end
