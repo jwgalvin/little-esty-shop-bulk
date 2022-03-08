@@ -23,6 +23,12 @@
   Item name: <%= invoice_item.item.name %><br>
   Item price: $<%= penny_to_dollar(invoice_item.item.unit_price) %><br>
   Quantity purchased: <%= invoice_item.quantity %>
+  <% #binding.pry%>
+  <% if invoice_item.item.promotional_discount(invoice_item.quantity).nil?%>
+    <h6>No promotions applied</h6>
+  <%else%>
+    <%= button_to "#{invoice_item.item.promotional_discount(invoice_item.quantity).name}", "/merchants/#{@merchant.id}/discounts/#{invoice_item.item.promotional_discount(invoice_item.quantity).id}", method: :get%>
+  <%end%>
 <a id="<%=invoice_item.item_id %>">Item status: <%= invoice_item.status %>
   <%= form_with url: "/merchants/#{@merchant.id}/invoices/#{@invoice.id}?invoice_item=#{invoice_item.id}", method: :patch, local: true do |form|%>
       <%=form.select :status, ['pending', 'shipped', 'packaged'], selected: invoice_item.status %>

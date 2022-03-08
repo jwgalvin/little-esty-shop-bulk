@@ -34,7 +34,7 @@ class Item < ApplicationRecord
   end
 
   def promotional_discount(volume)
-    disconts.where('? >= discounts.threshold', volume)
+    discounts.where('? >= discounts.threshold', volume)
     .order(percent: :desc).first
   end
 end
