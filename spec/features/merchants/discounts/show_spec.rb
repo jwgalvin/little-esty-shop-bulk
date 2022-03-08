@@ -20,4 +20,6 @@ describe "discount show/Dashboard", type: :feature do
     expect(page).to have_content("Percent discount applied: #{@discount1.percent}")
     expect(page).to_not have_content("Percent discount applied: #{@discount2.percent}")
   end
+
+  
 end

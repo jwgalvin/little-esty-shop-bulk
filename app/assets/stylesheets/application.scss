@@ -1,7 +1,11 @@
+/*
+*= require_tree .
+*= require_self
+*/
+
 @import "/*";
 @import "bootstrap";
  @import "tether";
-
 
 .merchant-div {
   display: flex;
@@ -19,8 +23,8 @@
   display: flex;
   flex-direction: row;
   flex: 2;
-  // padding-left: 13rem;
   text-align: left;
+  justify-content: center;
 }
 
 .left-div{
@@ -39,11 +43,12 @@ text-align: left;
 text-align: left;
 }
 .center-col2 {
-  border: 1px solid black;
+  border: 5px solid black;
   height: 40rem;
   overflow: auto;
+  width: 28rem;
 text-align: left;
-padding-left: 4rem;
+padding-left: 2rem;
 }
 .center-stuff{
   text-align: center;
@@ -78,9 +83,6 @@ padding-left: 4rem;
   width: 40%;
 }
 
-.border{
-    border: 3px solid black;
-}
 .center-admin{
 padding-left: 29rem;
 }

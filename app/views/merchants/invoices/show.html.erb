@@ -11,7 +11,6 @@
     <h7> Discount applied: <%= %><br></h7>
     <h7> Amount discounted: $<%= penny_to_dollar(@invoice.dis_counter) %> <br>
     Total invoice amount: $<%= invoice_mather(@invoice)%> </h7>
-    <% #binding.pry%>
 
 </ul>
   </div>
@@ -23,11 +22,16 @@
   Item name: <%= invoice_item.item.name %><br>
   Item price: $<%= penny_to_dollar(invoice_item.item.unit_price) %><br>
   Quantity purchased: <%= invoice_item.quantity %>
-<a id="<%=invoice_item.item_id %>">Item status: <%= invoice_item.status %>
-  <%= form_with url: "/merchants/#{@merchant.id}/invoices/#{@invoice.id}?invoice_item=#{invoice_item.id}", method: :patch, local: true do |form|%>
+  <a id="<%=invoice_item.item_id %>">Item status: <%= invoice_item.status %>
+      <%= form_with url: "/merchants/#{@merchant.id}/invoices/#{@invoice.id}?invoice_item=#{invoice_item.id}", method: :patch, local: true do |form|%>
       <%=form.select :status, ['pending', 'shipped', 'packaged'], selected: invoice_item.status %>
       <%= form.submit "Update Item Status" %>
-<%end%>
+    <%end%>
+    <% if invoice_item.item.promotional_discount(invoice_item.quantity).nil?%>
+      <h6>No promotions applied</h6>
+    <%else%>
+      Promotion applied:<%= button_to "#{invoice_item.item.promotional_discount(invoice_item.quantity).name}", "/merchants/#{@merchant.id}/discounts/#{invoice_item.item.promotional_discount(invoice_item.quantity).id}", method: :get%><br>
+  <%end%>
 
 <%end%></a><br>
 
